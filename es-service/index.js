@@ -19,6 +19,10 @@ app.get('/getQuest', function(req, res){
 	console.log("getQuest is called....");
 	con.query("SELECT * FROM qu", function(err, result, fields){
 	  	if(err)	throw err;
+
+      result.forEach(function(key,val){
+        key.Qust = JSON.parse(key.Qust);
+      });
 	  	res.send(result);
 	});
 });
